@@ -187,6 +187,7 @@
   <!-- PLAY -->
   <section id="screen-play" class="screen">
     <div class="topbar">
+      <button class="endturn" id="exit-game" aria-label="Exit to menu">✕</button>
       <div class="timer" id="timer">60</div>
       <div class="score-pill" id="play-score">Team 1 • 0</div>
       <button class="endturn" id="end-turn">End turn</button>
@@ -457,6 +458,11 @@ $('got-phrase').onclick=()=>award(3,'+3 🎉');
 $('got-word').onclick  =()=>award(1,'+1 ✅');
 $('skip').onclick      =()=>{ buzz(15); nextCard(); toast('Skip ⏭️'); };
 $('end-turn').onclick  =()=>endTurn();
+$('exit-game').onclick =()=>{
+  if(confirm('Exit to the main menu? The current game and scores will be lost.')){
+    stopTimer(); show('screen-home');
+  }
+};
 
 function endTurn(){
   stopTimer(); buzz([60,40,60]); beep(200,0.25);
